@@ -120,7 +120,8 @@ class MainWindow(QMainWindow):
     def save_new_computer(self):
         data = self.form.get_data()
         if not data['name']:
-            QMessageBox.warning(self, "Ошибка", "Пожалуйста, введите название компьютера")
+            QMessageBox.warning(self,
+                                "Ошибка", "Пожалуйста, введите название компьютера")
             return
         try:
             conn = sqlite3.connect('computers.db')
@@ -128,9 +129,11 @@ class MainWindow(QMainWindow):
             conn.close()
             self.form.close()
             self.load_computers()
-            QMessageBox.information(self, "Успех", "Компьютер успешно добавлен")
+            QMessageBox.information(self,
+                                    "Успех", "Компьютер успешно добавлен")
         except Exception as e:
-            QMessageBox.critical(self, "Ошибка", f"Ошибка при добавлении компьютера: {str(e)}")
+            QMessageBox.critical(self,
+                                 "Ошибка", f"Ошибка при добавлении компьютера: {str(e)}")
 
     def edit_computer(self, computer_data):
         self.form = ComputerForm(computer_data)
@@ -143,7 +146,8 @@ class MainWindow(QMainWindow):
     def save_edited_computer(self, computer_id):
         data = self.form.get_data()
         if not data['name']:
-            QMessageBox.warning(self, "Ошибка", "Пожалуйста, введите название компьютера")
+            QMessageBox.warning(self,
+                                "Ошибка", "Пожалуйста, введите название компьютера")
             return
         try:
             conn = sqlite3.connect('computers.db')
@@ -151,9 +155,11 @@ class MainWindow(QMainWindow):
             conn.close()
             self.form.close()
             self.load_computers()
-            QMessageBox.information(self, "Успех", "Информация о компьютере успешно обновлена")
+            QMessageBox.information(self,
+                                    "Успех", "Информация о компьютере успешно обновлена")
         except Exception as e:
-            QMessageBox.critical(self, "Ошибка", f"Ошибка при обновлении информации: {str(e)}")
+            QMessageBox.critical(self,
+                                 "Ошибка", f"Ошибка при обновлении информации: {str(e)}")
 
     def delete_computer(self, computer_id):
         reply = QMessageBox.question(self, "Подтверждение",
@@ -165,9 +171,11 @@ class MainWindow(QMainWindow):
                 delete_computer_db(self, computer_id)
                 conn.close()
                 self.load_computers()
-                QMessageBox.information(self, "Успех", "Компьютер успешно удален")
+                QMessageBox.information(self,
+                                        "Успех", "Компьютер успешно удален")
             except Exception as e:
-                QMessageBox.critical(self, "Ошибка", f"Ошибка при удалении компьютера: {str(e)}")
+                QMessageBox.critical(self,
+                                     "Ошибка", f"Ошибка при удалении компьютера: {str(e)}")
 
     def open_settings(self):
         self.settings_window = SettingsWindow(self)
